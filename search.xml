@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>MongoDB笔记</title>
+      <link href="/2022/06/05/mongodb-bi-ji/"/>
+      <url>/2022/06/05/mongodb-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MongoDB笔记"><a href="#MongoDB笔记" class="headerlink" title="MongoDB笔记"></a>MongoDB笔记</h1><hr><h2 id="MongoDB-运行"><a href="#MongoDB-运行" class="headerlink" title="MongoDB-运行"></a>MongoDB-运行</h2><p>1.net start MongoDB 为启动MongoDB服务<br>2.net stop MongoDB  为停止MongoDB服务<br>3.前面两个前提是要cd 到MongoDB目录下的bin文件夹，然后再PATCH进行相关配置</p><h2 id="MongoDB-数据库操作"><a href="#MongoDB-数据库操作" class="headerlink" title="MongoDB-数据库操作"></a>MongoDB-数据库操作</h2><p>1.user DATABASE_NAME &#x2F;&#x2F;创建数据库<br>2.db.dropDatabase() &#x2F;&#x2F;删除数据库</p><h2 id="MongoDB-查询"><a href="#MongoDB-查询" class="headerlink" title="MongoDB-查询"></a>MongoDB-查询</h2><p>1.db.collection.find()</p><h2 id="MongoDB-集合操作"><a href="#MongoDB-集合操作" class="headerlink" title="MongoDB-集合操作"></a>MongoDB-集合操作</h2><p>1.db.createCollection(name,option) &#x2F;&#x2F;创建集合<br>2.db.collection.drop() &#x2F;&#x2F;删除集合</p><h2 id="MongoDB-文档操作"><a href="#MongoDB-文档操作" class="headerlink" title="MongoDB-文档操作"></a>MongoDB-文档操作</h2><p>1.文档插入</p><p>db.COLLECTION_NAME.insert(document) &#x2F;&#x2F;插入文档<br>db.COLLECTION_NAME.save(document)   &#x2F;&#x2F;插入文档<br>db.COLLECTION_NAME.insertOne()      &#x2F;&#x2F;集合插入一个新文档<br>db.COLLECTION_NAME.insertMany()   &#x2F;&#x2F;  集合插入多个文档</p><p>2.文档查询</p><p>db.collection.find() <br>db.colection.find({key1:value1, key2:value2}).pretty()&#x2F;&#x2F;and条件查询</p><p>db.col.find(<br>   {<br>      $or: [<br>         {key1: value1}, {key2:value2}<br>      ]<br>   }<br>).pretty()<br>&#x2F;&#x2F;or 条件语句查询</p><p>3.文档更新</p><p>db.collection.update()</p><p>4.删除文档</p><p>db.collection.remove()                   &#x2F;&#x2F;删除文档</p><h2 id="MongoDB-聚合"><a href="#MongoDB-聚合" class="headerlink" title="MongoDB-聚合"></a>MongoDB-聚合</h2><p>MongoDB 中聚合(aggregate)主要用于处理数据(诸如统计平均值，求和等)，并返回计算后的数据结果。<br>有点类似 SQL 语句中的 count(*)。</p><blockquote><p>db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)</p></blockquote><p>管道在Unix和Linux中一般用于将当前命令的输出结果作为下一个命令的参数。<br>MongoDB的聚合管道将MongoDB文档在一个管道处理完毕后将结果传递给下一个管道处理。管道操作是可以重复的。<br>表达式：处理输入文档并输出。表达式是无状态的，只能用于计算当前聚合管道的文档，不能处理其它的文档。<br>这里我们介绍一下聚合框架中常用的几个操作：</p><ul><li>$project：修改输入文档的结构。可以用来重命名、增加或删除域，也可以用于创建计算结果以及嵌套文档。</li><li>$match：用于过滤数据，只输出符合条件的文档。$match使用MongoDB的标准查询操作。</li><li>$limit：用来限制MongoDB聚合管道返回的文档数。</li><li>$skip：在聚合管道中跳过指定数量的文档，并返回余下的文档。</li><li>$unwind：将文档中的某一个数组类型字段拆分成多条，每条包含数组中的一个值。</li><li>$group：将集合中的文档分组，可用于统计结果。</li><li>$sort：将输入文档排序后输出。</li><li>$geoNear：输出接近某一地理位置的有序文档</li></ul><h2 id="MongoDB-索引"><a href="#MongoDB-索引" class="headerlink" title="MongoDB-索引"></a>MongoDB-索引</h2><p>1.创建索引</p><blockquote><p>db.collection.createIndex(keys, options)<br>语法中 Key 值为你要创建的索引字段，1 为指定按升序创建索引，如果你想按降序来创建索引指定为 -1 即可。</p></blockquote><p>2.删除索引</p><blockquote><p>db.col.dropIndex(“索引名称”)    &#x2F;&#x2F;删除集合指定索引</p></blockquote><blockquote><p>db.col.dropIndexes()           &#x2F;&#x2F;删除集合所有索引 </p></blockquote><h2 id="MongoDB-排序"><a href="#MongoDB-排序" class="headerlink" title="MongoDB-排序"></a>MongoDB-排序</h2><p>在 MongoDB 中使用 sort() 方法对数据进行排序，sort() 方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列。</p><blockquote><p>db.COLLECTION_NAME.find().sort({KEY:1})</p></blockquote><h2 id="MongoDB-Limit与Skip"><a href="#MongoDB-Limit与Skip" class="headerlink" title="MongoDB-Limit与Skip"></a>MongoDB-Limit与Skip</h2><p>1.如果你需要在MongoDB中读取指定数量的数据记录，可以使用MongoDB的Limit方法，limit()方法接受一个数字参数，该参数指定从MongoDB中读取的记录条数。</p><blockquote><p>db.COLLECTION_NAME.find().limit(NUMBER)</p></blockquote><p>2.我们除了可以使用limit()方法来读取指定数量的数据外，还可以使用skip()方法来跳过指定数量的数据，skip方法同样接受一个数字参数作为跳过的记录条数。</p><blockquote><p>db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)</p></blockquote><h2 id="MongoDB-条件操作符"><a href="#MongoDB-条件操作符" class="headerlink" title="MongoDB-条件操作符"></a>MongoDB-条件操作符</h2><p>1.&gt;) 大于 - $gt<br>2.(&lt;) 小于 - $lt<br>3.(&gt;&#x3D;) 大于等于 - $gte<br>4.(&lt;&#x3D; ) 小于等于 - $lte</p><h2 id="MongoDB-type操作符"><a href="#MongoDB-type操作符" class="headerlink" title="MongoDB-$type操作符"></a>MongoDB-$type操作符</h2><p>$type操作符是基于BSON类型来检索集合中匹配的数据类型，并返回结果。</p><blockquote><p>db.col.find({“title” : {$type : 2}})</p></blockquote><blockquote><p>db.col.find({“title” : {$type : ‘string’}})</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MongoDB </tag>
+            
+            <tag> NoSQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Unity场景烘培总结</title>
       <link href="/2022/06/05/unity-chang-jing-hong-pei-zong-jie/"/>
       <url>/2022/06/05/unity-chang-jing-hong-pei-zong-jie/</url>
