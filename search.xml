@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Unity场景烘培总结</title>
+      <link href="/2022/06/05/unity-chang-jing-hong-pei-zong-jie/"/>
+      <url>/2022/06/05/unity-chang-jing-hong-pei-zong-jie/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Unity场景烘培"><a href="#Unity场景烘培" class="headerlink" title="Unity场景烘培"></a>Unity场景烘培</h2><h1 id="一、基础四种烘培方式"><a href="#一、基础四种烘培方式" class="headerlink" title="一、基础四种烘培方式"></a>一、基础四种烘培方式</h1><p>1.静态灯光下静态物体烘焙<br>2.静态灯光下动态物体烘焙<br>3.动态灯光下静态物体烘焙<br>4.动态灯光下动态物体烘焙</p><h1 id="二、实现方法"><a href="#二、实现方法" class="headerlink" title="二、实现方法"></a>二、实现方法</h1><p>1.静态灯光下静态物体烘焙设置如下：  </p><ul><li>灯光类型设置为Baked模式</li><li>模型预设右上角设置为Static类型</li><li>进入Windows-&gt;Rendering-&gt;LightingSettings,找到Lighting（光照）面板中Realtime Lighting（实时光照）下的Realtime Global ILLumination（实时全局照明）选项取消勾选，保留Mixed Lighting（混合照明）下的Baked Global ILLumination(烘焙全局照明)选项的勾选。最后将Mixed Lighting（混合照明）下的Lighting Mode（光照模式）改为“Shadowmask（阴影遮罩）”</li><li>进入Windows-&gt;Rendering-&gt;LightingSettings，回到Lighting（光照）面板中找到面板最下面处，“Generate Lighting”按钮下拉进行清除Baked Data或者直接点击“Generate Lighting”按钮进行烘焙</li></ul><p>2.静态灯光下动态物体烘焙设置如下：</p><ul><li>灯光类型设置为Mixed模式</li><li>运动的物体模型预设不能设置为右上角Static类型</li><li>Lighting（光照）面板中Realtime Lighting（实时光照）下的Realtime Global ILLumination（实时全局照明）选项取消勾选，保留Mixed Lighting（混合照明）下的Baked Global ILLumination(烘焙全局照明)选项的勾选。最后将Mixed Lighting（混合照明）下的Lighting Mode（光照模式）改为“Shadowmask（阴影遮罩）”</li><li>需要在场景中设置“Light Probe Group”（光照探针组）</li><li>进入Windows-&gt;Rendering-&gt;LightingSettings，回到Lighting（光照）面板中找到面板最下面处，“Generate Lighting”按钮下拉进行清除Baked Data或者直接点击“Generate Lighting”按钮进行烘焙</li></ul><p>3.动态灯光下静态物体烘焙设置如下：</p><ul><li>灯光类型设置为RealTime</li><li>静态物体预设右上角设置为Static类型</li><li>Lighting（光照）面板中Realtime Lighting（实时光照）下的Realtime Global ILLumination（实时全局照明）选项勾选，取消勾选Mixed Lighting（混合照明）下的Baked Global ILLumination(烘焙全局照明)选项的勾选</li><li>进入Windows-&gt;Rendering-&gt;LightingSettings，回到Lighting（光照）面板中找到面板最下面处，“Generate Lighting”按钮下拉进行清除Baked Data或者直接点击“Generate Lighting”按钮进行烘焙</li></ul><p>4.动态光下动态物体烘焙设置如下：</p><ul><li>灯光类型设置为RealTime</li><li>静态物体预设右上角设置为Static类型</li><li>Lighting（光照）面板中Realtime Lighting（实时光照）下的Realtime Global ILLumination（实时全局照明）选项勾选，取消勾选Mixed Lighting（混合照明）下的Baked Global ILLumination(烘焙全局照明)选项的勾选</li><li>动态物体需要在场景中设置“Light Probe Group”（光照探针组）</li><li>进入Windows-&gt;Rendering-&gt;LightingSettings，回到Lighting（光照）面板中找到面板最下面处，“Generate Lighting”按钮下拉进行清除Baked Data或者直接点击“Generate Lighting”按钮进行烘焙</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Uinty </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Unity性能优化</title>
       <link href="/2022/06/04/unity-xing-neng-you-hua/"/>
       <url>/2022/06/04/unity-xing-neng-you-hua/</url>
